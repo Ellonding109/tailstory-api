@@ -12,3 +12,4 @@ alembic==1.13.1
 pydantic
 pydantic-settings
 pwdlib[argon2]==0.2.0
+email-validator
