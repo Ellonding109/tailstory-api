@@ -7,8 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.database import engine, Base
-from app.routers import auth, pets, memories, subscriptions, colaborations, admin
-from app.routers import notifications
+from app.routers import auth, pets, memories, subscriptions, colaborations, admin, notification
 
 # Import models so SQLAlchemy knows to create the tables
 from app.models import User, Pet, Memory, Subscription, Invitation, PetAccess
