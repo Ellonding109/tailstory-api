@@ -17,8 +17,12 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     
     hashed_password = get_password_hash(user.password)
     new_user = User(email=user.email, password_hash=hashed_password)
-    create_notification(db, new_user.id, "Welcome to TailStory! ", "Your account is ready. Create your first pet to begin the journey!", "success", send_email_alert=True)
-    notify_admin(db, os.getenv("ADMIN_EMAIL"), "New User Registered", f"User {new_user.email} has registered.")
+    try:
+        create_notification(db, new_user.id, "Welcome to TailStory! 🐾", "Your account is ready.", "success", send_email_alert=True)
+        notify_admin(db, os.getenv("ADMIN_EMAIL"), "New User Registered", f"User {new_user.email} has registered.")
+    except Exception as e:
+        print(f"Notification failed but user registration succeeded: {e}")
+
     db.add(new_user)
 
     db.commit()
